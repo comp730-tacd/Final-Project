@@ -13,6 +13,14 @@ class VehicleCommands:
             state = "error"
         return state
 
+    def range(self, mileage, cur_amount):
+        range = mileage * cur_amount
+        return range
+
+class LocationCommands:
+    def pumpGas(self, location, capacity, cur_amount):
+        
+
 class RuntimeCommands:
     def printMenu(self):
         print("Select your vehicle by typing in the number: \n")
