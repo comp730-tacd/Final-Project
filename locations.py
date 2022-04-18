@@ -26,4 +26,3 @@ class Mechanic_Shop:
     def location_properties(self):
         name = "Mechanic_Shop"
         distance = 6    #distance from center
-        distance = 3    #distance from center where all 
