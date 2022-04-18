@@ -3,10 +3,10 @@ class Main:
         self.selection ='n/a'
 
 
-    def Manager(self):
-        self.Start_Menu()
+    def manager(self):
+        self.start_menu()
 
-    def Start_Menu(self):
+    def start_menu(self):
         while True:
             print("""
             1 = Start New Game
@@ -16,13 +16,13 @@ class Main:
             """)
             response = input("Please select a Menu Option: ")
             if response == '1':
-                self.Create_New_Save()
+                self.create_new_save()
 
             elif response == '2':
-                self.File_Check()
+                self.file_check()
 
             elif response == '3':
-                self.Enable_Dev_Mode()
+                self.enable_dev_mode()
 
             elif response == '4':
                 exit()
@@ -30,16 +30,16 @@ class Main:
             else:
                 print("Not an accepted input")
 
-    def Create_New_Save(self):
+    def create_new_save(self):
         pass
 
-    def File_Check(self):
+    def file_check(self):
         pass
 
-    def Load_Save(self):
+    def load_save(self):
         pass
 
-    def Enable_Dev_Mode(self):
+    def enable_dev_mode(self):
         pass
 
 
