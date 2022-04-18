@@ -1,10 +1,5 @@
 import locations
-
-class VehicleType:
-    sedan = "Sedan"
-    coupe = "Coupe"
-    suv = "SUV"
-    truck = "Truck"
+import VehicleType
 
 class Accord:
     name = "Honda Accord"
