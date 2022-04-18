@@ -15,3 +15,6 @@
     - Builder for car selection process?
     - State for things like engine running, engine off, filling gas, driving, etc
 
+
+## 4-18-22
+- Finished this weeks coding and met to discuss current progress and where we are planning to try and get for next week. 
