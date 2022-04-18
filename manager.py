@@ -1,7 +1,6 @@
 # This program will check if a file exists, then either create or write to it.
 # This logic can be used to save the game.
 
-import os.path
 from pathlib import Path
 
 
