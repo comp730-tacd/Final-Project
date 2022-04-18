@@ -4,7 +4,7 @@ class Main:
 
 
     def Manager(self):
-        self.Start_Menu
+        self.Start_Menu()
 
     def Start_Menu(self):
         while True:
@@ -16,16 +16,16 @@ class Main:
             """)
             response = input("Please select a Menu Option: ")
             if response == '1':
-                self.Create_New_Save
+                self.Create_New_Save()
 
             elif response == '2':
-                self.File_Check
+                self.File_Check()
 
             elif response == '3':
-                self.Enable_Dev_Mode
+                self.Enable_Dev_Mode()
 
             elif response == '4':
-                break
+                exit()
 
             else:
                 print("Not an accepted input")
