@@ -1,3 +1,5 @@
+import locations
+
 class Vehicle_Commands:
     def gas_capacity(self, capacity, cur_amount):
         if(0 < cur_amount < capacity):
@@ -7,5 +9,5 @@ class Vehicle_Commands:
         elif(cur_amount > capacity):
             state = "Gas tank Overfilled!"
         else:
-            state = "Error: Gas tank state undefined."
+            state = "error"
         return state
