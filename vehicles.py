@@ -1,6 +1,8 @@
 import locations
 import VehicleType
-
+'''
+Provides all of the starting information for all of the potential cars a user can pick
+'''
 class Accord:
     name = "Honda Accord"
     capacity = 15
