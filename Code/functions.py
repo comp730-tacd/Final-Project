@@ -13,6 +13,11 @@ class VehicleCommands:
             state = "error"
         return state
 
+    def travel(self):    
+        print("To be implemented")
+        #Retrieve information on where you are, and where you're going, and add the two together to find your travel distance.
+        #Once you have how far you're going to travel, take (distanceTravelled / milesPerGallon ) and subtract that from your current gas.
+
 class RuntimeCommands:
     def printMenu(self):
         print("Select your vehicle by typing in the number: \n")
