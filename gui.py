@@ -17,12 +17,13 @@ def click_no():
     mylabel1.grid(row=0, column=0)
 
 def click_enter():
-    input = "hello " + ew.get()
+    input = "hello " + entry_box.get()
     mylabel2 = Label(root, text=input)
     mylabel2.grid(row=6, column=0)
 
 # create
-ew = Entry(root)
+entry_box = Entry(root)
+entry_box.insert(0, "Enter your name!")
 
 mylabel1 = Label(root, text="Select your option!")
 mylabel2 = Label(root)
@@ -33,7 +34,7 @@ mybutton3 = Button(root, text="Enter", padx=50, command=click_enter,fg="white", 
 
 
 # display
-ew.grid(row=5, column=0)
+entry_box.grid(row=5, column=0)
 
 mylabel1.grid(row=0, column=0)
 
