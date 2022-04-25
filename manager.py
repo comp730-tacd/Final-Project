@@ -1,7 +1,8 @@
+from functions import RuntimeCommands
+
 class Main:
     def __init__(self):
         self.selection ='n/a'
-
 
     def manager(self):
         self.start_menu()
@@ -31,7 +32,7 @@ class Main:
                 print("Not an accepted input")
 
     def create_new_save(self):
-        pass
+        RuntimeCommands.printMenu(self)
 
     def file_check(self):
         pass
@@ -43,7 +44,7 @@ class Main:
         pass
 
 
-Main().Manager()
+Main().manager()
 
 if __name__ == "manager":
     mainObject = Main()
