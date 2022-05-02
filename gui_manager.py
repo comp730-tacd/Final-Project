@@ -35,13 +35,18 @@ class App():
         def click_load():
             pass
 
+        def click_quit():
+            quit()
+
         self.travel_button = tk.Button(self.macro_canvas, text="Travel", padx=50, pady=10, command=click_travel,fg="white", bg="#777877")
         self.save_button = tk.Button(self.macro_canvas, text="Save", padx=50, pady=10, command=click_save,fg="white", bg="#777877")
-        self.load_button = tk.Button(self.macro_canvas, text="Load", padx=50, pady=10, command=click_load,fg="white", bg="#777877")    
+        self.load_button = tk.Button(self.macro_canvas, text="Load", padx=50, pady=10, command=click_load,fg="white", bg="#777877")  
+        self.quit_button = tk.Button(self.macro_canvas, text="Quit", padx=50, pady=10, command=click_quit,fg="white", bg="#777877")   
 
         self.macro_travel = self.macro_canvas.create_window( 30, 15, anchor = "nw", window = self.travel_button)    
         self.macro_save = self.macro_canvas.create_window( 210, 15, anchor = "nw", window = self.save_button)   
         self.macro_load = self.macro_canvas.create_window( 390, 15, anchor = "nw", window = self.load_button)  
+        self.macro_quit = self.macro_canvas.create_window( 570, 15, anchor = "nw", window = self.quit_button)  
 
         # Micro Buttons
 
