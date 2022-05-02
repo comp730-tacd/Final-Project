@@ -2,7 +2,7 @@ from tkinter import *
 
 root = Tk()
 
-root.geometry("400x400")
+# root.geometry("800x400")
 
 
 
@@ -21,8 +21,9 @@ def click_enter():
     mylabel2.grid(row=6, column=0)
 
 # create
-entry_box = Entry(root)
+entry_box = Entry(root, width=35, borderwidth=5)
 entry_box.insert(0, "Enter your name!")
+
 
 mylabel1 = Label(root, text="Select your option!")
 mylabel2 = Label(root)
@@ -33,9 +34,9 @@ mybutton3 = Button(root, text="Enter", padx=50, command=click_enter,fg="white", 
 
 
 # display
-entry_box.grid(row=5, column=0)
+entry_box.grid(row=0, column=0, columnspan=3, padx=10,pady=10)
 
-mylabel1.grid(row=0, column=0)
+# mylabel1.grid(row=0, column=0)
 
 mybutton1.grid(row=4, column=0)
 mybutton2.grid(row=4, column=1)

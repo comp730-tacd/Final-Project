@@ -47,14 +47,19 @@ class App():
 
         def click_int_one():
             pass
+        
         def click_int_two():
             pass
+        
         def click_int_three():
             pass
+        
         def click_int_four():
             pass
+        
         def click_int_five():
             pass
+        
         def click_int_six():
             pass
 
