@@ -46,22 +46,34 @@ class App():
         # Micro Buttons
 
         def click_int_one():
-            pass
+            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas.grid(row=1, column=2)
+            self.term_canvas.create_text(200,100, text="You picked One", font=("Arial", 22))
         
         def click_int_two():
-            pass
+            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas.grid(row=1, column=2)
+            self.term_canvas.create_text(200,100, text="You picked Two", font=("Arial", 22))
         
         def click_int_three():
-            pass
-        
+            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas.grid(row=1, column=2)
+            self.term_canvas.create_text(200,100, text="You picked Three", font=("Arial", 22))
+
         def click_int_four():
-            pass
-        
+            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas.grid(row=1, column=2)
+            self.term_canvas.create_text(200,100, text="You picked Four", font=("Arial", 22))
+
         def click_int_five():
-            pass
+            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas.grid(row=1, column=2)
+            self.term_canvas.create_text(200,100, text="You picked Five", font=("Arial", 22))
         
         def click_int_six():
-            pass
+            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas.grid(row=1, column=2)
+            self.term_canvas.create_text(200,100, text="You picked Six", font=("Arial", 22))
 
         self.interaction_one = tk.Button(self.micro_canvas, text="Interaction 1", padx=50, pady=10, command=click_int_one,fg="white", bg="#777877")
         self.interaction_two = tk.Button(self.micro_canvas, text="Interaction 2", padx=50, pady=10, command=click_int_two,fg="white", bg="#777877")
@@ -77,6 +89,7 @@ class App():
         self.micro_interaction_five = self.micro_canvas.create_window( 270, 90, anchor = "nw", window = self.interaction_five)   
         self.micro_interaction_six = self.micro_canvas.create_window( 270, 150, anchor = "nw", window = self.interaction_six)  
 
+        self.term_label = tk.Label(self.term_canvas)
 
 
         self.frame.pack()
