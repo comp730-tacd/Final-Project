@@ -6,16 +6,16 @@ class App():
         # core
         self.root = tk.Tk()
         self.root.title("Car Sim")
-
-        self.frame = tk.Frame(self.root, padx=50, pady = 50, bg = "#4E4187", relief= tk.SUNKEN) 
+        
+        self.core_frame = tk.Frame(self.root, padx=50, pady = 50, bg = "#4E4187", relief= tk.SUNKEN) 
 
         self.pbg = tk.PhotoImage(file = "assets/house.png")
 
 
-        self.pic_canvas = tk.Canvas(self.frame, width=1000, height=470)
-        self.micro_canvas = tk.Canvas(self.frame, width=498, height=230, bg="#929493")
-        self.macro_canvas = tk.Canvas(self.frame, width=1000, height=70, bg="black")
-        self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+        self.pic_canvas = tk.Canvas(self.core_frame, width=1000, height=470)
+        self.micro_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#929493")
+        self.macro_canvas = tk.Canvas(self.core_frame, width=1000, height=70, bg="black")
+        self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
 
         self.pic_canvas.create_image(500, 200, image = self.pbg)
 
@@ -38,45 +38,50 @@ class App():
         def click_quit():
             quit()
 
+        def main_menu():
+            pass
+
         self.travel_button = tk.Button(self.macro_canvas, text="Travel", padx=50, pady=10, command=click_travel,fg="white", bg="#777877")
         self.save_button = tk.Button(self.macro_canvas, text="Save", padx=50, pady=10, command=click_save,fg="white", bg="#777877")
         self.load_button = tk.Button(self.macro_canvas, text="Load", padx=50, pady=10, command=click_load,fg="white", bg="#777877")  
         self.quit_button = tk.Button(self.macro_canvas, text="Quit", padx=50, pady=10, command=click_quit,fg="white", bg="#777877")   
+        self.main_menu_button = tk.Button(self.macro_canvas, text="Main Menu", padx=38, pady=10, command=main_menu,fg="white", bg="#777877") 
 
-        self.macro_travel = self.macro_canvas.create_window( 30, 15, anchor = "nw", window = self.travel_button)    
-        self.macro_save = self.macro_canvas.create_window( 210, 15, anchor = "nw", window = self.save_button)   
-        self.macro_load = self.macro_canvas.create_window( 390, 15, anchor = "nw", window = self.load_button)  
-        self.macro_quit = self.macro_canvas.create_window( 570, 15, anchor = "nw", window = self.quit_button)  
+        self.macro_travel = self.macro_canvas.create_window( 70, 15, anchor = "nw", window = self.travel_button)    
+        self.macro_save = self.macro_canvas.create_window( 250, 15, anchor = "nw", window = self.save_button)   
+        self.macro_load = self.macro_canvas.create_window( 430, 15, anchor = "nw", window = self.load_button)  
+        self.macro_quit = self.macro_canvas.create_window( 790, 15, anchor = "nw", window = self.quit_button)  
+        self.macro_main_menu = self.macro_canvas.create_window( 610, 15, anchor = "nw", window = self.main_menu_button)  
 
         # Micro Buttons
 
         def click_int_one():
-            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
             self.term_canvas.grid(row=1, column=2)
             self.term_canvas.create_text(200,100, text="You picked One", font=("Arial", 22))
         
         def click_int_two():
-            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
             self.term_canvas.grid(row=1, column=2)
             self.term_canvas.create_text(200,100, text="You picked Two", font=("Arial", 22))
         
         def click_int_three():
-            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
             self.term_canvas.grid(row=1, column=2)
             self.term_canvas.create_text(200,100, text="You picked Three", font=("Arial", 22))
 
         def click_int_four():
-            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
             self.term_canvas.grid(row=1, column=2)
             self.term_canvas.create_text(200,100, text="You picked Four", font=("Arial", 22))
 
         def click_int_five():
-            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
             self.term_canvas.grid(row=1, column=2)
             self.term_canvas.create_text(200,100, text="You picked Five", font=("Arial", 22))
         
         def click_int_six():
-            self.term_canvas = tk.Canvas(self.frame, width=498, height=230, bg="green")
+            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
             self.term_canvas.grid(row=1, column=2)
             self.term_canvas.create_text(200,100, text="You picked Six", font=("Arial", 22))
 
@@ -97,7 +102,7 @@ class App():
         self.term_label = tk.Label(self.term_canvas)
 
 
-        self.frame.pack()
+        self.core_frame.pack()
         self.root.mainloop()
 
 
