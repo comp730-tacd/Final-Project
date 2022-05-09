@@ -42,22 +42,25 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
 
-        menu_canvas = tk.Canvas(self, width=1000, height=778, bg="black")
+        self.pbg = tk.PhotoImage(file = "assets/street_copy.png")
 
-        menu_canvas.grid(row=1, column=1)   
+        pic_canvas = tk.Canvas(self, width=1000, height=778, bg="black")
 
-        new_game_button = tk.Button(self, text="New Game", padx=38, pady=10, command=lambda: controller.show_frame("PageOne"), fg="white", bg="#777877") 
-        new_game_button = menu_canvas.create_window( 70, 15, anchor = "nw", window = new_game_button) 
+        pic_canvas.create_image(500, 389, image = self.pbg)
 
-        # label = tk.Label(self, text="This is the start page", font=controller.title_font)
-        # label.pack(side="top", fill="x", pady=10)
+        pic_canvas.grid(row=1, column=1)   
 
-        # button1 = tk.Button(self, text="Go to Page One",
-        #                     command=lambda: controller.show_frame("PageOne"))
-        # button2 = tk.Button(self, text="Go to Page Two",
-        #                     command=lambda: controller.show_frame("PageTwo"))
-        # button1.pack()
-        # button2.pack()
+
+
+        new_game_button = tk.Button(self, text="New Game", padx=40, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageOne"), fg="#fcfcfc", bg="#6806c9") 
+        new_game_button = pic_canvas.create_window( 500 , 300, anchor = "center", window = new_game_button) 
+
+        load_game_button = tk.Button(self, text="Load Game", padx=38, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageTwo"), fg="#fcfcfc", bg="#6806c9") 
+        load_game_button = pic_canvas.create_window( 500 , 375, anchor = "center", window = load_game_button) 
+
+        dev_mode_button = tk.Button(self, text="Dev Mode", padx=41, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageTwo"), fg="#fcfcfc", bg="#6806c9") 
+        dev_mode_button = pic_canvas.create_window( 500 , 450, anchor = "center", window = dev_mode_button) 
+
 
 
 class PageOne(tk.Frame):
