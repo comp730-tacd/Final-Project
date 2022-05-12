@@ -23,7 +23,7 @@ python3 gui_manager.py
 ```
 
 ### Group
-Tony Pion
-Adam Morvan
-Chris Inzinga
-Derek Nicholas
+Tony Pion  
+Adam Morvan  
+Chris Inzinga  
+Derek Nicholas  
