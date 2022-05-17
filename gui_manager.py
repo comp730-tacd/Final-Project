@@ -2,7 +2,18 @@ import tkinter as tk
 from tkinter import font as tkfont  
 
 
+
 class App(tk.Tk):
+=======
+class App():
+    '''
+    Manages the GUI, sets everything up, and makes everything work.
+    '''
+    def __init__(self):
+        # core
+        self.root = tk.Tk()
+        self.root.title("Car Sim")
+
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)

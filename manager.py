@@ -1,6 +1,10 @@
 from functions import RuntimeCommands
 
 class Main:
+    '''
+    Facilitates the launching of the text based game.
+    note: DEPRECATED
+    '''
     def __init__(self):
         self.selection ='n/a'
 
