@@ -12,14 +12,14 @@ No additional dependencies are required. Our final project requires the usage of
 
 
 ### Usage
-To launch the text based game:
-```
-python3 manager.py
-```
-
-To launch the GUI:
+To launch the game, simply double click gui_manager.py or run this command in the project's directory:
 ```
 python3 gui_manager.py
+```
+
+(DEPRECATED) To launch text-based version:
+```
+python3 manager.py
 ```
 
 ### Group
