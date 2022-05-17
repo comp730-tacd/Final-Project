@@ -48,9 +48,9 @@ class StartPage(tk.Frame):
 
         pic_canvas.create_image(500, 389, image = self.pbg)
 
-        pic_canvas.grid(row=1, column=1)   
+        pic_canvas.grid(row=1, column=1)  
 
-
+        
 
         new_game_button = tk.Button(self, text="New Game", padx=40, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageOne"), fg="#fcfcfc", bg="#6806c9") 
         new_game_button = pic_canvas.create_window( 500 , 300, anchor = "center", window = new_game_button) 
