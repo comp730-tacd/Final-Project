@@ -2,6 +2,9 @@ import tkinter as tk
 
 
 class App():
+    '''
+    Manages the GUI, sets everything up, and makes everything work.
+    '''
     def __init__(self):
         # core
         self.root = tk.Tk()
