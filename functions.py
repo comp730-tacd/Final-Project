@@ -31,6 +31,8 @@ class VehicleCommands:
         '''
         range = mileage * cur_amount
         return range
+    
+
 
 class LocationCommands:
     '''
@@ -59,8 +61,49 @@ class LocationCommands:
                         return ordered
                     else:
                         print("Not enough room in tank. Please enter a smaller amount.")
-                    
 
+    def travel(self, cur_location, end_location, mileage, cur_amount):
+        '''
+        Checks to see if you'll make it, and then if so, travels to that location
+        '''
+        #Checks distance to see how far you would have to travel
+        distCheck = 0
+        #Ugly code block
+        if cur_location == locations.Center:
+            distCheck = distCheck + locations.Center.distance
+        if cur_location == locations.Gas_Station:
+            distCheck = distCheck + locations.Gas_Station.distance
+        if cur_location == locations.Grocery_Store:
+            distCheck = distCheck + locations.Grocery_Store.distance
+        if cur_location == locations.Home:
+            distCheck = distCheck + locations.Home.distance
+        if cur_location == locations.Mechanic_Shop:
+            distCheck = distCheck + locations.Mechanic_Shop.distance
+        if cur_location == locations.Work:
+            distCheck = distCheck + locations.Work.distance
+        if end_location == locations.Center:
+            distCheck = distCheck + locations.Center.distance
+        if end_location == locations.Gas_Station:
+            distCheck = distCheck + locations.Gas_Station.distance
+        if end_location == locations.Grocery_Store:
+            distCheck = distCheck + locations.Grocery_Store.distance
+        if end_location == locations.Home:
+            distCheck = distCheck + locations.Home.distance
+        if end_location == locations.Mechanic_Shop:
+            distCheck = distCheck + locations.Mechanic_Shop.distance
+        if end_location == locations.Work:
+            distCheck = distCheck + locations.Work.distance                    
+        #End ugly code block
+        #Compare distCheck against range
+        if distCheck < VehicleCommands.range(mileage, cur_amount):
+            #Subtract the amount of gas by the appropriate amount for the distance traveled
+            cur_amount = cur_amount - (distCheck / mileage)
+            #Uncomment and fix the next line to implement a pause
+            #pause(speed / distCheck)
+        else:
+            #Print "You don't have enough gas!"
+            distCheck = -1
+        return
 
                     
 

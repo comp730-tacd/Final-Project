@@ -21,3 +21,7 @@ class Grocery_Store:
 class Mechanic_Shop:
     name = "Mechanic_Shop"
     distance = 6    #distance from center
+
+class Center:
+    name = "Center"
+    distance = 0
