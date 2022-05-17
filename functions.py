@@ -66,7 +66,8 @@ class LocationCommands:
 
 class RuntimeCommands:
     '''
-    Contains commands that pertain to the operation of the game, not neccesarily having to do with vehicles.'''
+    Contains commands that pertain to the operation of the game, not neccesarily having to do with vehicles.
+    '''
     def printMenu(self):
         '''
         Prints the menu for vehicle selection at the beginning of the game, and when the user can change vehicles
