@@ -1,28 +1,90 @@
-import tkinter as tk
+import tkinter as tk                
+from tkinter import font as tkfont  
 
 
-class App():
-    def __init__(self):
-        # core
-        self.root = tk.Tk()
-        self.root.title("Car Sim")
+class App(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+
+        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+
+        # the container is where we'll stack a bunch of frames
+        # on top of each other, then the one we want visible
+        # will be raised above the others
+        container = tk.Frame(self, padx=50, pady = 50, bg = "#4E4187", relief= tk.SUNKEN)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+
+        self.frames = {}
+        for F in (StartPage, PageOne, PageTwo):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
+
+            # put all of the pages in the same location;
+            # the one on the top of the stacking order
+            # will be the one that is visible.
+            frame.grid(row=0, column=0, sticky="nsew")
+
+        self.show_frame("StartPage")
+
+    def show_frame(self, page_name):
+        '''Show a frame for the given page name'''
+        frame = self.frames[page_name]
+        frame.tkraise()
+
+
+class StartPage(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+
+        self.pbg = tk.PhotoImage(file = "assets/street_copy.png")
+
+        pic_canvas = tk.Canvas(self, width=1000, height=778, bg="black")
+
+        pic_canvas.create_image(500, 389, image = self.pbg)
+
+        pic_canvas.grid(row=1, column=1)  
+
         
-        self.core_frame = tk.Frame(self.root, padx=50, pady = 50, bg = "#4E4187", relief= tk.SUNKEN) 
 
+        new_game_button = tk.Button(self, text="New Game", padx=40, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageOne"), fg="#fcfcfc", bg="#6806c9") 
+        new_game_button = pic_canvas.create_window( 500 , 300, anchor = "center", window = new_game_button) 
+
+        load_game_button = tk.Button(self, text="Load Game", padx=38, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageTwo"), fg="#fcfcfc", bg="#6806c9") 
+        load_game_button = pic_canvas.create_window( 500 , 375, anchor = "center", window = load_game_button) 
+
+        dev_mode_button = tk.Button(self, text="Dev Mode", padx=41, pady=11, font=("Arial", 11, 'bold'), command=lambda: controller.show_frame("PageTwo"), fg="#fcfcfc", bg="#6806c9") 
+        dev_mode_button = pic_canvas.create_window( 500 , 450, anchor = "center", window = dev_mode_button) 
+
+
+
+class PageOne(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        
+
+        # Layout "core"
         self.pbg = tk.PhotoImage(file = "assets/house.png")
 
+        pic_canvas = tk.Canvas(self, width=1000, height=470)
+        micro_canvas = tk.Canvas(self, width=498, height=230, bg="#929493")
+        macro_canvas = tk.Canvas(self, width=1000, height=70, bg="black")
+        term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")        
 
-        self.pic_canvas = tk.Canvas(self.core_frame, width=1000, height=470)
-        self.micro_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#929493")
-        self.macro_canvas = tk.Canvas(self.core_frame, width=1000, height=70, bg="black")
-        self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
+        pic_canvas.create_image(500, 200, image = self.pbg)
 
-        self.pic_canvas.create_image(500, 200, image = self.pbg)
+        pic_canvas.grid(row=0, column=1, columnspan=2)
+        micro_canvas.grid(row=1, column=1)
+        macro_canvas.grid(row=2, column=1, columnspan=2)
+        term_canvas.grid(row=1, column=2)
 
-        self.pic_canvas.grid(row=0, column=1, columnspan=2)
-        self.micro_canvas.grid(row=1, column=1)
-        self.macro_canvas.grid(row=2, column=1, columnspan=2)
-        self.term_canvas.grid(row=1, column=2)
 
         # Macro Buttons
 
@@ -38,75 +100,84 @@ class App():
         def click_quit():
             quit()
 
-        def main_menu():
-            pass
 
-        self.travel_button = tk.Button(self.macro_canvas, text="Travel", padx=50, pady=10, command=click_travel,fg="white", bg="#777877")
-        self.save_button = tk.Button(self.macro_canvas, text="Save", padx=50, pady=10, command=click_save,fg="white", bg="#777877")
-        self.load_button = tk.Button(self.macro_canvas, text="Load", padx=50, pady=10, command=click_load,fg="white", bg="#777877")  
-        self.quit_button = tk.Button(self.macro_canvas, text="Quit", padx=50, pady=10, command=click_quit,fg="white", bg="#777877")   
-        self.main_menu_button = tk.Button(self.macro_canvas, text="Main Menu", padx=38, pady=10, command=main_menu,fg="white", bg="#777877") 
+        travel_button = tk.Button(macro_canvas, text="Travel", padx=50, pady=10, command=click_travel,fg="white", bg="#777877")
+        save_button = tk.Button(macro_canvas, text="Save", padx=50, pady=10, command=click_save,fg="white", bg="#777877")
+        load_button = tk.Button(macro_canvas, text="Load", padx=50, pady=10, command=click_load,fg="white", bg="#777877")  
+        quit_button = tk.Button(macro_canvas, text="Quit", padx=50, pady=10, command=click_quit,fg="white", bg="#777877")   
+        main_menu_button = tk.Button(macro_canvas, text="Main Menu", padx=38, pady=10, command=lambda: controller.show_frame("StartPage"),fg="white", bg="#777877") 
 
-        self.macro_travel = self.macro_canvas.create_window( 70, 15, anchor = "nw", window = self.travel_button)    
-        self.macro_save = self.macro_canvas.create_window( 250, 15, anchor = "nw", window = self.save_button)   
-        self.macro_load = self.macro_canvas.create_window( 430, 15, anchor = "nw", window = self.load_button)  
-        self.macro_quit = self.macro_canvas.create_window( 790, 15, anchor = "nw", window = self.quit_button)  
-        self.macro_main_menu = self.macro_canvas.create_window( 610, 15, anchor = "nw", window = self.main_menu_button)  
+        travel_button = macro_canvas.create_window( 70, 15, anchor = "nw", window = travel_button)    
+        save_button = macro_canvas.create_window( 250, 15, anchor = "nw", window = save_button)   
+        load_button = macro_canvas.create_window( 430, 15, anchor = "nw", window = load_button)  
+        quit_button = macro_canvas.create_window( 790, 15, anchor = "nw", window = quit_button)  
+        main_menu_button = macro_canvas.create_window( 610, 15, anchor = "nw", window = main_menu_button)  
+
 
         # Micro Buttons
 
+
         def click_int_one():
-            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
-            self.term_canvas.grid(row=1, column=2)
-            self.term_canvas.create_text(200,100, text="You picked One", font=("Arial", 22))
+            term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")
+            term_canvas.grid(row=1, column=2)
+            term_canvas.create_text(200,100, text="You picked One", font=("Arial", 22))
         
         def click_int_two():
-            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
-            self.term_canvas.grid(row=1, column=2)
-            self.term_canvas.create_text(200,100, text="You picked Two", font=("Arial", 22))
+            term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")
+            term_canvas.grid(row=1, column=2)
+            term_canvas.create_text(200,100, text="You picked Two", font=("Arial", 22))
         
         def click_int_three():
-            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
-            self.term_canvas.grid(row=1, column=2)
-            self.term_canvas.create_text(200,100, text="You picked Three", font=("Arial", 22))
+            term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")
+            term_canvas.grid(row=1, column=2)
+            term_canvas.create_text(200,100, text="You picked Three", font=("Arial", 22))
 
         def click_int_four():
-            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
-            self.term_canvas.grid(row=1, column=2)
-            self.term_canvas.create_text(200,100, text="You picked Four", font=("Arial", 22))
+            term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")
+            term_canvas.grid(row=1, column=2)
+            term_canvas.create_text(200,100, text="You picked Four", font=("Arial", 22))
 
         def click_int_five():
-            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
-            self.term_canvas.grid(row=1, column=2)
-            self.term_canvas.create_text(200,100, text="You picked Five", font=("Arial", 22))
+            term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")
+            term_canvas.grid(row=1, column=2)
+            term_canvas.create_text(200,100, text="You picked Five", font=("Arial", 22))
         
         def click_int_six():
-            self.term_canvas = tk.Canvas(self.core_frame, width=498, height=230, bg="#5e7ef2")
-            self.term_canvas.grid(row=1, column=2)
-            self.term_canvas.create_text(200,100, text="You picked Six", font=("Arial", 22))
+            term_canvas = tk.Canvas(self, width=498, height=230, bg="#5e7ef2")
+            term_canvas.grid(row=1, column=2)
+            term_canvas.create_text(200,100, text="You picked Six", font=("Arial", 22))
 
-        self.interaction_one = tk.Button(self.micro_canvas, text="Interaction 1", padx=50, pady=10, command=click_int_one,fg="white", bg="#777877")
-        self.interaction_two = tk.Button(self.micro_canvas, text="Interaction 2", padx=50, pady=10, command=click_int_two,fg="white", bg="#777877")
-        self.interaction_three = tk.Button(self.micro_canvas, text="Interaction 3", padx=50, pady=10, command=click_int_three,fg="white", bg="#777877")    
-        self.interaction_four = tk.Button(self.micro_canvas, text="Interaction 4", padx=50, pady=10, command=click_int_four,fg="white", bg="#777877")
-        self.interaction_five = tk.Button(self.micro_canvas, text="Interaction 5", padx=50, pady=10, command=click_int_five,fg="white", bg="#777877")
-        self.interaction_six = tk.Button(self.micro_canvas, text="Interaction 6", padx=50, pady=10, command=click_int_six,fg="white", bg="#777877")   
+        interaction_one = tk.Button(micro_canvas, text="Interaction 1", padx=50, pady=10, command=click_int_one,fg="white", bg="#777877")
+        interaction_two = tk.Button(micro_canvas, text="Interaction 2", padx=50, pady=10, command=click_int_two,fg="white", bg="#777877")
+        interaction_three = tk.Button(micro_canvas, text="Interaction 3", padx=50, pady=10, command=click_int_three,fg="white", bg="#777877")    
+        interaction_four = tk.Button(micro_canvas, text="Interaction 4", padx=50, pady=10, command=click_int_four,fg="white", bg="#777877")
+        interaction_five = tk.Button(micro_canvas, text="Interaction 5", padx=50, pady=10, command=click_int_five,fg="white", bg="#777877")
+        interaction_six = tk.Button(micro_canvas, text="Interaction 6", padx=50, pady=10, command=click_int_six,fg="white", bg="#777877")   
 
-        self.micro_interaction_one = self.micro_canvas.create_window( 60, 30, anchor = "nw", window = self.interaction_one)    
-        self.micro_interaction_two = self.micro_canvas.create_window( 60, 90, anchor = "nw", window = self.interaction_two)   
-        self.micro_interaction_three = self.micro_canvas.create_window( 60, 150, anchor = "nw", window = self.interaction_three)  
-        self.micro_interaction_four = self.micro_canvas.create_window( 270, 30, anchor = "nw", window = self.interaction_four)    
-        self.micro_interaction_five = self.micro_canvas.create_window( 270, 90, anchor = "nw", window = self.interaction_five)   
-        self.micro_interaction_six = self.micro_canvas.create_window( 270, 150, anchor = "nw", window = self.interaction_six)  
-
-        self.term_label = tk.Label(self.term_canvas)
-
-
-        self.core_frame.pack()
-        self.root.mainloop()
+        interaction_one = micro_canvas.create_window( 60, 30, anchor = "nw", window = interaction_one)    
+        interaction_two = micro_canvas.create_window( 60, 90, anchor = "nw", window = interaction_two)   
+        interaction_three = micro_canvas.create_window( 60, 150, anchor = "nw", window = interaction_three)  
+        interaction_four = micro_canvas.create_window( 270, 30, anchor = "nw", window = interaction_four)    
+        interaction_five = micro_canvas.create_window( 270, 90, anchor = "nw", window = interaction_five)   
+        interaction_six = micro_canvas.create_window( 270, 150, anchor = "nw", window = interaction_six)  
 
 
 
-a = App()
 
 
+
+class PageTwo(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="This is page 2", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
+
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
